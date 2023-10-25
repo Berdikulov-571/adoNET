@@ -6,28 +6,11 @@ namespace adoNET
     {
         static void Main(string[] args)
         {
-            string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=StudyCenterDB;Trusted_Connection=True;";
-
-            using(SqlConnection connect = new SqlConnection())
-            {
-                connect.ConnectionString = connectionString;
-
-                connect.Open();
-
-                int findId = 1;
-
-                string query = $"select * from UserTable";
-
-                SqlCommand sqlCommand = new SqlCommand(query, connect);
-
-                using (SqlDataReader reader = sqlCommand.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Console.WriteLine($"{reader["userId"]} {reader["firstName"]} {reader["lastName"]}");
-                    }
-                }
-            }
+            //DataContextAdoNet.DeleteById(5);
+            //DataContextAdoNet.Create(5, "MuhammadAbdulloh", "Komilov");
+            //DataContextAdoNet.GetById(1);
+            //DataContextAdoNet.Update(5,"Alisher","Alimatov");
+            DataContextAdoNet.GetAll();
         }
     }
 }
