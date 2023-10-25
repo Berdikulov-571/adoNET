@@ -131,5 +131,42 @@ namespace adoNET
                 using(SqlDataReader reader = command.ExecuteReader()) { }
             }
         }
+
+        /// <summary>
+        /// This Function Return List<User>
+        /// </summary>
+        /// <returns></returns>
+        public static List<User> GetUsers()
+        {
+            string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=StudyCenterDB;Trusted_Connection=True;";
+
+            List<User> users = new List<User>();
+
+            using(SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+
+                connection.Open();
+
+                string query = "select * from userTable";
+
+                SqlCommand command = new SqlCommand(query,connection);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        users.Add(new User
+                        {
+                            userId = (int)reader[0],
+                            firstName = (string)reader[1],
+                            lastName = (string)reader[2]
+                        });
+                    }
+                }
+
+                return users;
+            }
+        }
     }
 }

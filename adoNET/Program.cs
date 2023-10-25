@@ -10,7 +10,12 @@ namespace adoNET
             //DataContextAdoNet.Create(5, "MuhammadAbdulloh", "Komilov");
             //DataContextAdoNet.GetById(1);
             //DataContextAdoNet.Update(5,"Alisher","Alimatov");
-            DataContextAdoNet.GetAll();
+            List<User> users = DataContextAdoNet.GetUsers();
+
+            foreach (User i in users)
+            {
+                Console.WriteLine($"{i.firstName} {i.lastName}");
+            }
         }
     }
 }
