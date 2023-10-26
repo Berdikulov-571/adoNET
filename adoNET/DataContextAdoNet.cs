@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Net.Quic;
 
 namespace adoNET
 {
@@ -208,12 +209,12 @@ namespace adoNET
         }
 
         /// <summary>
-        /// 
+        /// Generic Insert
         /// </summary>
         /// <param name="databaseName"></param>
         /// <param name="tableName"></param>
         /// <param name="values"></param>
-        public static void Insert(string databaseName, string tableName,string values)
+        public static void InsertGeneric(string databaseName, string tableName,string values)
         {
             string connectionString = $"Server=(localdb)\\MSSQLLocalDB;Database={databaseName};Trusted_Connection=True;";
 
@@ -254,6 +255,30 @@ namespace adoNET
                 {
 
                 }
+            }
+        }
+
+        /// <summary>
+        /// Generic Delete
+        /// </summary>
+        /// <param name="databaseName"></param>
+        /// <param name="tableName"></param>
+        /// <param name="values"></param>
+        public static void DeleteGeneric(string databaseName, string tableName, string condition)
+        {
+            string connectionString = $"Server=(localdb)\\MSSQLLocalDB;Database={databaseName};Trusted_Connection=True;";
+
+            using(SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+
+                connection.Open();
+
+                string query = $"delete from {tableName} {condition}";
+
+                SqlCommand command = new SqlCommand(query,connection);
+
+                command.ExecuteNonQuery();
             }
         }
     }

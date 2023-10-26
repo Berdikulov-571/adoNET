@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using Sharprompt;
+using System.Data.SqlClient;
 
 namespace adoNET
 {
@@ -6,15 +7,11 @@ namespace adoNET
     {
         static void Main(string[] args)
         {
-            //DataContextAdoNet.DeleteById(5);
-            //DataContextAdoNet.Create(5, "MuhammadAbdulloh", "Komilov");
-            //DataContextAdoNet.GetById(1);
-            //DataContextAdoNet.Update(5,"Alisher","Alimatov");
+            DataContextAdoNet.GetByGeneric("StudyCenterDB","userTable","where userId = 5;");
 
+            DataContextAdoNet.InsertGeneric("StudyCenterDB","Persons", "('Bahriddin','Abdusalomov',17,1),('Temurbek','Abdurashidov',17,2)");           
 
-            //DataContextAdoNet.GetByGeneric("StudyCenterDB","userTable","where userId = 5;");
-
-            DataContextAdoNet.Insert("StudyCenterDB","Persons", "('Bahriddin','Abdusalomov',17,1),('Temurbek','Abdurashidov',17,2)");
+            DataContextAdoNet.DeleteGeneric("AdoNET", "userTable", "where UserId = 2003");
         }
     }
 }
