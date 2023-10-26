@@ -272,7 +272,7 @@ namespace adoNET
             {
                 connection.ConnectionString = connectionString;
 
-                connection.Open();
+                connection.Open();  
 
                 string query = $"delete from {tableName} {condition}";
 
